@@ -8,6 +8,7 @@ import Button from "./Button";
 import EventCards from "./EventCards";
 import LogoCrop, { LOGO_CROPS } from "./LogoCrop";
 import Stage, { STAGE_H } from "./Stage";
+import Textile from "./Textile";
 import TypeAsset from "./TypeAsset";
 
 gsap.registerPlugin(ScrollTrigger);
@@ -67,10 +68,12 @@ export default function IntroScene() {
       tl.to("[data-a=type]", { y: 500.32 - 837, ease: "power1.out", duration: 1 }, 0);
 
       // Side textiles slide inward
-      tl.to("[data-a=mani-l]", { x: 175.37, ease: "power2.out", duration: 1 }, 0)
-        .to("[data-a=mani-r]", { x: -170.6, ease: "power2.out", duration: 1 }, 0)
-        .fromTo("[data-a=b-l]", { x: -60 }, { x: 0, ease: "power2.out", duration: 1 }, 0)
-        .fromTo("[data-a=b-r]", { x: 60 }, { x: 0, ease: "power2.out", duration: 1 }, 0);
+      tl.fromTo("[data-a=mani-l]", { x: -260 }, { x: 0, ease: "power2.out", duration: 1 }, 0).fromTo(
+        "[data-a=mani-r]",
+        { x: 260 },
+        { x: 0, ease: "power2.out", duration: 1 },
+        0,
+      );
 
       // Section 2 content settles in as the hero clears
       tl.fromTo("[data-a=olive]", { autoAlpha: 0 }, { autoAlpha: 1, duration: 0.7 }, 0.3)
@@ -115,31 +118,9 @@ export default function IntroScene() {
         />
 
         <Stage className="z-20">
-          {/* textiles */}
-          <img
-            data-a="mani-l"
-            src="/assets/shared/textile.png"
-            alt=""
-            className="absolute left-[-403.98px] top-[223px] h-[578px] w-[457.22px] max-w-none object-cover"
-          />
-          <img
-            data-a="mani-r"
-            src="/assets/shared/textile.png"
-            alt=""
-            className="absolute left-[1381.99px] top-[223px] h-[578px] w-[457.22px] max-w-none object-cover"
-          />
-          <img
-            data-a="b-l"
-            src="/assets/section2/b-mani.png"
-            alt=""
-            className="absolute left-[-400.84px] top-[223px] h-[578px] w-[457.22px] max-w-none object-cover"
-          />
-          <img
-            data-a="b-r"
-            src="/assets/section2/b-mani.png"
-            alt=""
-            className="absolute left-[1390.63px] top-[223px] h-[578px] w-[457.22px] max-w-none object-cover"
-          />
+          {/* side dresses slide in from beyond the screen edge */}
+          <Textile dataA="mani-l" kind="m" side="l" peek={110} top={223} />
+          <Textile dataA="mani-r" kind="m" side="r" peek={110} top={223} />
 
           {/* bead string, two 509 x 1004 slices of the master artwork */}
           <div

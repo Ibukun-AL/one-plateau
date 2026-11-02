@@ -73,8 +73,8 @@ export default function SiteFooter() {
   return (
     <div ref={wrap} className="relative z-10">
     <SectionShell height={660} bg="bg-fest-yellow">
-      <Textile dataA="foot-dress-l" kind="a" left={-277} top={62} />
-      <Textile dataA="foot-dress-r" kind="a" left={1288} top={62} />
+      <Textile dataA="foot-dress-l" kind="a" side="l" top={62} />
+      <Textile dataA="foot-dress-r" kind="a" side="r" top={62} />
 
       <div
         data-a="foot-string"

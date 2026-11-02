@@ -27,7 +27,12 @@ export default function ExperienceRoot({ children }: { children: React.ReactNode
     if (!el) return;
 
     const scale = () => window.innerHeight / STAGE_H;
-    const setScale = () => el.style.setProperty("--s", String(scale()));
+    const setScale = () => {
+      const sc = scale();
+      el.style.setProperty("--s", String(sc));
+      // width the screen has beyond the 1441px canvas, per side, in design px
+      el.style.setProperty("--ex", `${Math.max(0, (document.documentElement.clientWidth / sc - 1441) / 2)}px`);
+    };
     setScale();
     window.addEventListener("resize", setScale);
 

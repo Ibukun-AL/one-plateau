@@ -5,6 +5,7 @@ import { useLayoutEffect, useRef } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import Stage from "./Stage";
+import Textile from "./Textile";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -72,13 +73,9 @@ export default function CenturySection() {
           />
         </div>
 
-        {/* textiles, in Figma layer order */}
-        <img src="/assets/shared/textile.png" alt="" className="pointer-events-none absolute left-[1381.99px] top-[1177px] h-[578px] w-[457.22px] max-w-none object-cover" />
-        <img src="/assets/section2/b-mani.png" alt="" className="pointer-events-none absolute left-[1211.39px] top-[987px] h-[578px] w-[457.22px] max-w-none object-cover blur-[1.65px]" />
-        <img src="/assets/shared/textile.png" alt="" className="pointer-events-none absolute left-[-403.98px] top-[1177px] h-[578px] w-[457.22px] max-w-none object-cover" />
-        <img src="/assets/section3/a-mani.png" alt="" className="pointer-events-none absolute left-[1382px] top-[990.26px] h-[571.49px] w-[457.22px] max-w-none object-cover" />
-        <img src="/assets/section2/b-mani.png" alt="" className="pointer-events-none absolute left-[-228.61px] top-[987px] h-[578px] w-[457.22px] max-w-none object-cover" />
-        <img src="/assets/section3/a-mani.png" alt="" className="pointer-events-none absolute left-[-403.98px] top-[1180.26px] h-[571.49px] w-[457.22px] max-w-none object-cover" />
+        {/* side dresses (the other four Figma layers sit fully off-canvas) */}
+        <Textile kind="b" side="r" top={987} className="blur-[1.65px]" />
+        <Textile kind="b" side="l" top={987} />
 
         {/* timeline cards */}
         <div className="absolute left-[778px] top-[160px] flex w-[568.11px] flex-col gap-[48px]">

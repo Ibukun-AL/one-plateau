@@ -189,10 +189,10 @@ export default function StoryScene() {
           </div>
 
           {/* calendar / socials side textiles sit behind the glass panel */}
-          <Textile dataA="tx-m-l" kind="m" left={-253} top={223} />
-          <Textile dataA="tx-m-r" kind="m" left={1239} top={223} />
-          <Textile dataA="tx-b-l" kind="b" left={-225} top={223} />
-          <Textile dataA="tx-b-r" kind="b" left={1202} top={223} />
+          <Textile dataA="tx-m-l" kind="m" side="l" top={223} />
+          <Textile dataA="tx-m-r" kind="m" side="r" top={223} />
+          <Textile dataA="tx-b-l" kind="b" side="l" top={223} />
+          <Textile dataA="tx-b-r" kind="b" side="r" top={223} />
 
           <EventsTrack />
 
@@ -212,8 +212,8 @@ export default function StoryScene() {
           <CtaContent />
 
           {/* foreground: the cap and the A dresses travel together, in front of the cards */}
-          <Textile dataA="fg-dress-l" kind="a" left={-240} top={226} />
-          <Textile dataA="fg-dress-r" kind="a" left={1225} top={226} />
+          <Textile dataA="fg-dress-l" kind="a" side="l" top={226} />
+          <Textile dataA="fg-dress-r" kind="a" side="r" top={226} />
           <div
             data-a="fg-cap"
             className="pointer-events-none absolute left-[510px] top-[57px] h-[383.54px] w-[422px] overflow-hidden"
