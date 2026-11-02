@@ -96,7 +96,7 @@ export default function StoryScene() {
         .to(dressR, { x: 320, autoAlpha: 0, ease: "power2.in", duration: M * 0.55 }, T1)
         .to(str, { y: -STAGE_H, duration: M }, T1)
         .to(bg, { backgroundColor: YELLOW, duration: M * 0.6 }, T1 + M * 0.25)
-        .to(one, { y: 0, ease: "power3.out", duration: M * 0.7 }, T1 + M * 0.1)
+        .fromTo(one, { y: 1100 }, { y: 0, ease: "power3.out", duration: M * 0.7 }, T1 + M * 0.1)
         .fromTo(panel, { y: 260, autoAlpha: 0 }, { y: 0, autoAlpha: 1, ease: "power2.out", duration: M * 0.5 }, T1 + M * 0.4)
         .fromTo(
           "[data-a=fin-cal-title],[data-a=fin-cal]",
@@ -139,9 +139,17 @@ export default function StoryScene() {
         // the string settles 166px higher than the page position, so the blue bead sits behind
         // "MANY EXPERIENCES" (as in the Figma) and the white text stays readable
         .to(str, { y: -3 * STAGE_H - 166, duration: M }, T3)
-        .to(
+        .fromTo(
           one,
-          { scale: 714 / 452, x: 363 - 494, y: 346.8 - 97, ease: "power2.inOut", duration: M * 0.7 },
+          { scale: 1, x: 0, y: 0 },
+          {
+            scale: 714 / 452,
+            x: 363 - 494,
+            y: 346.8 - 97,
+            ease: "power2.inOut",
+            duration: M * 0.7,
+            immediateRender: false, // read from the "to" vars: don't apply the start state at creation
+          },
           T3 + M * 0.15,
         )
         .fromTo(
@@ -203,17 +211,18 @@ export default function StoryScene() {
           <CalendarContent />
           <SocialsContent />
 
+          {/*
+            The ONE is drawn twice so the cap can sit between the letters, as in the Figma CTA:
+            the "O" (left 32.5% of the image) is behind the cap, the "N" and "E" are in front.
+            32.5% is the empty gap between the O and the N in the PNG. Both copies get the same tweens.
+          */}
           <img
             data-a="fin-one"
             src="/assets/hero/one-beads.png"
             alt="One"
             className="pointer-events-none absolute left-[494px] top-[97px] h-[172.8px] w-[452px] max-w-none object-cover"
+            style={{ clipPath: "inset(0 67.5% 0 0)" }}
           />
-          <CtaContent />
-
-          {/* foreground: the cap and the A dresses travel together, in front of the cards */}
-          <Textile dataA="fg-dress-l" kind="a" side="l" top={226} />
-          <Textile dataA="fg-dress-r" kind="a" side="r" top={226} />
           <div
             data-a="fg-cap"
             className="pointer-events-none absolute left-[510px] top-[57px] h-[383.54px] w-[422px] overflow-hidden"
@@ -224,6 +233,20 @@ export default function StoryScene() {
               className="absolute left-[-10.6%] top-[-20.05%] h-[142.82%] w-[121.68%] max-w-none"
             />
           </div>
+
+          <img
+            data-a="fin-one"
+            src="/assets/hero/one-beads.png"
+            alt=""
+            aria-hidden
+            className="pointer-events-none absolute left-[494px] top-[97px] h-[172.8px] w-[452px] max-w-none object-cover"
+            style={{ clipPath: "inset(0 0 0 32.5%)" }}
+          />
+          <CtaContent />
+
+          {/* foreground: the A dresses travel with the cap, in front of the cards */}
+          <Textile dataA="fg-dress-l" kind="a" side="l" top={226} />
+          <Textile dataA="fg-dress-r" kind="a" side="r" top={226} />
         </Stage>
       </div>
     </section>
